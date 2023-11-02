@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список покупателей</title>
+    <link rel="stylesheet" href="/dop.css">
+</head>
+<body>
+
+<h1>Список покупателей Dota+</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Срок</th>
+        <th>Цена</th>
+        <th>Покупатель</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" dota : ${dotas}">
+        <td th:text="${dota.id}"></td>
+        <td th:text="${dota.name}"></td>
+        <td th:text="${dota.time}"></td>
+        <td th:text="${dota.cost}"></td>
+        <td th:text="${dota.user != null ? dota.user.email : ''}"></td>
+        <td>
+            <a th:href="@{'/dota/' + 'edit/' + ${dota.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/dota/' + 'delete/' + ${dota.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/dota/add" class="btn-new">Создать</a>
+<form method="get" action="/dota/search"></br>
+    <input type="text" class="search-input" name="name" placeholder="Название">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+</body>
+</html>

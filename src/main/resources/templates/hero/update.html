@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование героя</title>
+    <link rel="stylesheet" href="/my.css">
+</head>
+<body>
+<h1>Редактирование героя</h1>
+<form th:action="@{'/hero/' + 'edit/' + ${hero.id}}" th:object="${hero}" th:method="post">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <label for="attrib">Аттрибут:</label>
+    <input type="text" id="attrib" name="attrib" th:field="*{attrib}" required>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/animal" class="btn-back">Отмена</a>
+</body>
+</html>

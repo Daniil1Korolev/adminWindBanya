@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список тренировок</title>
+    <link rel="stylesheet" href="/dop.css">
+</head>
+<body>
+
+<h1>Список тренировок</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Кол-во</th>
+        <th>Дата</th>
+        <th>Тренер</th>
+        <th>Герой</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" antraining : ${antrainings}">
+        <td th:text="${antraining.id}"></td>
+        <td th:text="${antraining.kolvo}"></td>
+        <td th:text="${antraining.month}"></td>
+        <td th:text="${antraining.coaches != null ? antraining.coaches.email : ''}"></td>
+        <td th:text="${antraining.hero != null ? antraining.hero.name : ''}"></td>
+        <td>
+            <a th:href="@{'/antraining/' + 'edit/' + ${antraining.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/antraining/' + 'delete/' + ${antraining.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/antraining/add" class="btn-new">Создать</a></br>
+<form method="get" action="/antraining/search">
+    <input type="text" class="search-input" name="month" placeholder="Дата">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+</body>
+</html>
