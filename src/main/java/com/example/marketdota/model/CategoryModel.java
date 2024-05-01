@@ -26,8 +26,7 @@ public class CategoryModel {
     @Column(name = "status")
     private String status;
 
-    @OneToMany (mappedBy = "category", fetch = FetchType.EAGER)
-    private Collection<LessonsModel> lesson;
+
 
     public CategoryModel() {
     }

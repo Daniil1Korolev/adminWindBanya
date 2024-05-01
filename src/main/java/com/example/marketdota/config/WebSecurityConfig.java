@@ -1,5 +1,6 @@
 package com.example.marketdota.config;
 
+import com.example.marketdota.repo.LogRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import com.example.marketdota.model.Log;
 import javax.sql.DataSource;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Configuration
 @EnableWebSecurity
@@ -19,6 +23,11 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
+    private final LogRepo logRepo;
+
+    public WebSecurityConfig(LogRepo logRepo) {
+        this.logRepo = logRepo;
+    }
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){
@@ -34,6 +43,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        Log log = new Log();
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        log.setDate(currentDateTime);
+        log.setLEVEL("INFO");
+        log.setMESSAGE("Запущена программа");
+        logRepo.save(log);
+
+
         http.authorizeRequests()
                 .antMatchers("/login","/registration").permitAll()
                 .anyRequest()

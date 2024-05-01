@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список тренеров</title>
+    <title>Список бань</title>
     <link rel="stylesheet" href="/dop.css">
 </head>
 <body>
 
-<h1>Список тренеров</h1>
+<h1>Список бань</h1>
 <table>
     <tr>
         <th>ID</th>
-        <th>Почта</th>
-        <th>Возраст</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
+        <th>Номер</th>
+        <th>Вид бани</th>
+        <th>Цена бани</th>
+        <th>Кол-во этажей</th>
         <th>Действие</th>
     </tr>
     <tr th:each=" coaches : ${coachess}">
@@ -24,7 +23,6 @@
         <td th:text="${coaches.age}"></td>
         <td th:text="${coaches.surname}"></td>
         <td th:text="${coaches.name}"></td>
-        <td th:text="${coaches.second_name}"></td>
         <td>
             <a th:href="@{'/coaches/' + 'edit/' + ${coaches.id}}" class="btn-edit">Редактировать</a>
             <a th:href="@{'/coaches/' + 'delete/' + ${coaches.id}}" class="btn-delete" th:method="delete">Удалить</a>

@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import javax.xml.crypto.Data;
+import java.util.Date;
 
 @Entity
 @Table(name = "dota")
@@ -24,20 +26,25 @@ public class DotaModel {
     @Size(max = 30, message = "Длина должна быть не больше 30 символов")
     @Column(name = "time")
     private String time;
+    private String datazasel;
+    private String datavisel;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") // Указывает на столбец, который связывает сущности
-    private UserModel user;
+    @JoinColumn(name = "coach_id") // Указывает на столбец, который связывает сущности
+    private CoachesModel coaches;
 
     public DotaModel() {
     }
 
-    public DotaModel(long id, String name, int cost, String time, UserModel user) {
+    public DotaModel(long id, String datazasel,String datavisel, String name, int cost, String time, CoachesModel coaches) {
+        this.datazasel = datazasel;
+        this.datavisel = datavisel;
         this.id = id;
         this.name = name;
         this.cost = cost;
         this.time = time;
-        this.user = user;
+        this.coaches = coaches;
+
     }
 
     public long getId() {
@@ -46,6 +53,22 @@ public class DotaModel {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getDatazasel() {
+        return datazasel;
+    }
+
+    public void setDatazasel(String datazasel) {
+        this.datazasel = datazasel;
+    }
+
+    public String getDatavisel() {
+        return datavisel;
+    }
+
+    public void setDatavisel(String datavisel) {
+        this.datavisel = datavisel;
     }
 
     public String getName() {
@@ -64,6 +87,15 @@ public class DotaModel {
         this.cost = cost;
     }
 
+    public CoachesModel getCoaches() {
+        return coaches;
+    }
+
+    public void setCoaches(CoachesModel coaches) {
+        this.coaches = coaches;
+    }
+
+
     public String getTime() {
         return time;
     }
@@ -72,11 +104,5 @@ public class DotaModel {
         this.time = time;
     }
 
-    public UserModel getUser() {
-        return user;
-    }
 
-    public void setUser(UserModel user) {
-        this.user = user;
-    }
 }

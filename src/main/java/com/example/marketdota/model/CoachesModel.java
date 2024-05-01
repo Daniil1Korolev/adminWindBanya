@@ -19,7 +19,9 @@ public class CoachesModel {
 
     @Min(0)
     @Column(name = "age")
-    private int age;
+    private String age;
+
+
 
     @NotBlank(message = "surname is required")
     @Size(max = 30, message = "Длина фамилии должна быть не больше 30 символов")
@@ -36,8 +38,12 @@ public class CoachesModel {
     @Column(name = "name")
     private String name;
 
+    //private String name;
+
+
+
     @OneToMany (mappedBy = "coaches")
-    private Collection<LessonsModel> coaches;
+    private Collection<DotaModel> coaches;
 
     @OneToMany (mappedBy = "coaches")
     private Collection<AnTrainingModel> antraining;
@@ -45,7 +51,7 @@ public class CoachesModel {
     public CoachesModel() {
     }
 
-    public CoachesModel(long id, String email, int age, String surname, String second_name, String name, Collection<LessonsModel> coaches, Collection<AnTrainingModel> antraining) {
+    public CoachesModel(long id, String email,String name, String age, String surname, String second_name, Collection<DotaModel> coaches, Collection<AnTrainingModel> antraining) {
         this.id = id;
         this.email = email;
         this.age = age;
@@ -54,6 +60,7 @@ public class CoachesModel {
         this.name = name;
         this.coaches = coaches;
         this.antraining = antraining;
+
     }
 
     public long getId() {
@@ -72,11 +79,11 @@ public class CoachesModel {
         this.email = email;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -92,23 +99,29 @@ public class CoachesModel {
         return second_name;
     }
 
-    public void setSecond_name(String second_name) {
-        this.second_name = second_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSecond_name(String second_name) {
+        this.second_name = second_name;
     }
 
-    public Collection<LessonsModel> getCoaches() {
+//    public String getName() {
+//        return name;
+//    }
+
+
+
+    public Collection<DotaModel> getCoaches() {
         return coaches;
     }
 
-    public void setCoaches(Collection<LessonsModel> coaches) {
+    public void setCoaches(Collection<DotaModel> coaches) {
         this.coaches = coaches;
     }
 
@@ -119,4 +132,7 @@ public class CoachesModel {
     public void setAntraining(Collection<AnTrainingModel> antraining) {
         this.antraining = antraining;
     }
+
+
+
 }

@@ -4,6 +4,8 @@ import com.example.marketdota.model.HeroModel;
 import com.example.marketdota.model.RaitModel;
 import com.example.marketdota.repo.HeroRepo;
 import com.example.marketdota.repo.RaitRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,13 +19,21 @@ import javax.validation.Valid;
 @RequestMapping("/hero")
 @PreAuthorize("hasAnyAuthority('EMPLOYEE', 'ADMIN')")
 public class HeroController {
+    Logger logger = LoggerFactory.getLogger(AdminController.class);
+
     @Autowired
     private HeroRepo Repo;
     @Autowired
     private RaitRepo raitRepo;
 
+
+
     @Autowired
     public HeroController(HeroRepo Repo) {
+        logger.info("Привет");
+        logger.warn("Предупреждение");
+        logger.error("Ошибка");
+        logger.debug("may may");
         this.Repo = Repo;
     }
 
@@ -81,4 +91,5 @@ public class HeroController {
         model.addAttribute("heros", heroModels);
         return "hero/all";
     }
+
 }

@@ -15,6 +15,7 @@
                th:name="${'roles[]'}" th:value="${role}"
                th:checked="${#lists.contains(user_object.roles,role)}">
 
+
         <label th:text="${role}"></label>
     </div>
     <input type="submit" value="Сохранить" class="btn-save">

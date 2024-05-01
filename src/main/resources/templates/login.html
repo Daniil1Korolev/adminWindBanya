@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" content="d6701e42-9c0f-41f0-a0dc-0907e1c6b04e" />
+    <meta name="_csrf_header" content="X-CSRF-TOKEN" >
     <title>Логин</title>
     <link rel="stylesheet" href="/dop.css">
 <head>
@@ -29,6 +31,7 @@
     <div th:if="${param.error}" class="alert alert-danger text-center mt-3" role="alert">
         Неверное имя пользователя или пароль.
     </div>
+    <input type="hidden" name="$_csrf.parameterName}" value="${_csrf.token}"/>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

@@ -35,14 +35,9 @@ public class UserModel {
     @Column(name = "name")
     private String name;
 
-    @OneToMany (mappedBy = "user")
-    private Collection<DotaModel> tickets;
 
-    @ManyToMany
-    @JoinTable (name="eventmark",
-            joinColumns=@JoinColumn (name="user_id"),
-            inverseJoinColumns=@JoinColumn(name="lesson_id"))
-    private List<LessonsModel> lesson;
+
+
 
     @ElementCollection(targetClass = roleEnum.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
@@ -52,7 +47,7 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(long id, String email, int age, boolean active, String password, String surname, String second_name, String name, Collection<DotaModel> tickets, List<LessonsModel> lesson, Set<roleEnum> roles) {
+    public UserModel(long id, String email, int age, boolean active, String password, String surname, String second_name, String name,  Set<roleEnum> roles) {
         this.id = id;
         this.email = email;
         this.age = age;
@@ -61,8 +56,7 @@ public class UserModel {
         this.surname = surname;
         this.second_name = second_name;
         this.name = name;
-        this.tickets = tickets;
-        this.lesson = lesson;
+
         this.roles = roles;
     }
 
@@ -122,21 +116,12 @@ public class UserModel {
         this.name = name;
     }
 
-    public Collection<DotaModel> getDotas() {
-        return tickets;
-    }
 
-    public void setTickets(Collection<DotaModel> tickets) {
-        this.tickets = tickets;
-    }
 
-    public List<LessonsModel> getLesson() {
-        return lesson;
-    }
 
-    public void setEvent(List<LessonsModel> event) {
-        this.lesson = event;
-    }
+
+
+
 
     public Set<roleEnum> getRoles() {
         return roles;

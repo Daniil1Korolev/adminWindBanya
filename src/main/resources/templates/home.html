@@ -14,22 +14,21 @@
 <nav>
 
         <div class="d-flex gap-2 justify-content-center py-5" style="background: rgb(150,119,119)">
-            <a class="btn btn-warning rounded-pill px-3" href="/lesson">Список заказов</a>
-            <a class="btn btn-success rounded-pill px-3" href="/dota">Список покупателей Дота+</a>
-            <a class="btn btn-warning rounded-pill px-3" href="/hero">Список героев</a>
-            <a class="btn btn-danger rounded-pill px-3" href="/category">Список категорий услуг</a>
-            <a class="btn btn-danger rounded-pill px-3" href="/coaches">Список тренеров</a>
-            <a class="btn btn-warning rounded-pill px-3"  href="/rait">Список Винрейта</a>
-            <a class="btn btn-success rounded-pill px-3" href="/eventmark">Список записи на услуги</a>
-            <a class="btn btn-warning rounded-pill px-3" href="/antraining">Список тренировок на героях</a>
-            <a class="btn btn-danger rounded-pill px-3" href="/user">Изменить роль пользователей</a>
+            <a class="btn btn-success rounded-pill px-3" href="/dota">Список заказов</a>
+<!--            <a class="btn btn-warning rounded-pill px-3" href="/hero">Список героев</a>-->
+<!--            <a class="btn btn-danger rounded-pill px-3" href="/category">Список категорий услуг</a>-->
+            <a class="btn btn-success rounded-pill px-3" href="/coaches">Список бань</a>
+<!--            <a class="btn btn-warning rounded-pill px-3"  href="/rait">Список Винрейта</a>-->
+<!--            <a class="btn btn-success rounded-pill px-3" href="/eventmark">Список записи на услуги</a>-->
+<!--            <a class="btn btn-warning rounded-pill px-3" href="/antraining">Список тренировок на героях</a>-->
+            <a class="btn btn-danger rounded-pill px-3" href="/user">Пользователи</a>
         </div>
 
 
 
     </ul>
 </nav>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<h1 th:inline="text">Приветствуем [[${#httpServletRequest.remoteUser}]]!</h1>
 <div class="text-end">
     <form th:action="@{/logout}" method="post">
         <button type="submit" class="btn btn-warning">Log out</button>

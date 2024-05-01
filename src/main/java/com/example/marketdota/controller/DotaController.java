@@ -1,7 +1,9 @@
 package com.example.marketdota.controller;
 
+import com.example.marketdota.model.CoachesModel;
 import com.example.marketdota.model.DotaModel;
 import com.example.marketdota.model.UserModel;
+import com.example.marketdota.repo.CoachesRepo;
 import com.example.marketdota.repo.DotaRepo;
 import com.example.marketdota.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,13 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/dota")
-@PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+@PreAuthorize("hasAnyAuthority('EMPLOYEE')")
 public class DotaController {
 
     @Autowired
     public DotaRepo Repo; //hero
     @Autowired
-    public UserRepo userRepo; //class
+    public CoachesRepo coachesRepo;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -41,8 +43,8 @@ public class DotaController {
         model.addAttribute("dota", dotaModel);
 
         // Получите список классов из репозитория и добавьте его в модель
-        Iterable<UserModel> userModels = userRepo.findAll();
-        model.addAttribute("users", userModels);
+        Iterable<CoachesModel> coachesModels = coachesRepo.findAll();
+        model.addAttribute("coachess", coachesModels);
 
         return "dota/add";
     }
@@ -67,8 +69,8 @@ public class DotaController {
         if (dotaModel == null) {
             return "redirect:/dota";
         }
-        Iterable<UserModel> userModels = userRepo.findAll();
-        model.addAttribute("users", userModels);
+        Iterable<CoachesModel> coachesModels = coachesRepo.findAll();
+        model.addAttribute("coachess", coachesModels);
 
         model.addAttribute("dota", dotaModel);
         return "dota/update";
@@ -81,8 +83,8 @@ public class DotaController {
             BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
-            Iterable<UserModel> userModels = userRepo.findAll();
-            model.addAttribute("users", userModels);
+            Iterable<CoachesModel> coachesModels = coachesRepo.findAll();
+            model.addAttribute("coachess", coachesModels);
 
             return "dota/update"; // Останется на странице редактирования с отображением ошибок
         }
