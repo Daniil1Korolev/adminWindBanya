@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание нового билета</title>
+    <link rel="stylesheet" href="/my.css">
+</head>
+<body>
+<h1>Создание нового заказа</h1>
+<form action="/zakaz/add" th:object="${zakaz}" method="post">
+    <label for="datazasel">Дата заселения:</label>
+    <input type="text" id="datazasel" name="datazasel" th:field="*{datazasel}" required>
+    <label for="datavisel">Дата выселения:</label>
+    <input type="text" id="datavisel" name="datavisel" th:field="*{datavisel}" required>
+    <label for="email">Логин:</label>
+    <input type="text" id="email" name="email" th:field="*{name}" required>
+    <label for="age">Способ оплаты:</label>
+    <input type="text" id="age" name="age" th:field="*{time}" required>
+    <label for="password">Итоговая цена:</label>
+    <input type="text" id="password" name="password" th:field="*{cost}" required>
+    <label>Баня</label>
+    <div class="form-group">
+        <select th:field="*{banya}" id="banya" class="custom-select">
+            <option value="">Выберите баню</option>
+            <option th:each="banya : ${banyas}" th:value="${banya.id}" th:text="${banya.age}"></option>
+        </select>
+        <span class="error-message" th:if="${#fields.hasErrors('banya')}" th:errors="*{banya}"></span>
+    </div>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/zakaz" class="btn-back">Отмена</a>
+</body>
+</html>

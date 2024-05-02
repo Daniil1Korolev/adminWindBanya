@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Marketdota</artifactId>
+	<artifactId>BanyaAdmin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Marketdota</name>
 	<description>Marketdota</description>

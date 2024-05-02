@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список бань</title>
+    <link rel="stylesheet" href="/dop.css">
+</head>
+<body>
+
+<h1>Список бань</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Номер</th>
+        <th>Вид бани</th>
+        <th>Цена бани</th>
+        <th>Кол-во этажей</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" banya : ${banyas}">
+        <td th:text="${banya.id}"></td>
+        <td th:text="${banya.email}"></td>
+        <td th:text="${banya.age}"></td>
+        <td th:text="${banya.surname}"></td>
+        <td th:text="${banya.name}"></td>
+        <td>
+            <a th:href="@{'/banya/' + 'edit/' + ${banya.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/banya/' + 'delete/' + ${banya.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/banya/add" class="btn-new">Создать</a>
+<form method="get" action="/banya/search"></br>
+    <input type="text" class="search-input" name="email" placeholder="Поиск по этажам">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+</body>
+</html>

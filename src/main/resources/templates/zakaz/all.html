@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заказов</title>
+    <link rel="stylesheet" href="/dop.css">
+</head>
+<body>
+
+<h1>Список заказов</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Дата заселения</th>
+        <th>Дата выселения</th>
+        <th>Логин</th>
+        <th>Способ оплаты</th>
+        <th>Итоговая цена</th>
+        <th>Баня</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" zakaz : ${zakazs}">
+        <td th:text="${zakaz.id}"></td>
+        <td th:text="${zakaz.datazasel}"></td>
+        <td th:text="${zakaz.datavisel}"></td>
+        <td th:text="${zakaz.name}"></td>
+        <td th:text="${zakaz.time}"></td>
+        <td th:text="${zakaz.cost}"></td>
+        <td th:text="${zakaz.banya != null ? zakaz.banya.age : ''}"></td>
+        <td>
+            <a th:href="@{'/zakaz/' + 'edit/' + ${zakaz.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/zakaz/' + 'delete/' + ${zakaz.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/zakaz/add" class="btn-new">Создать</a>
+<form method="get" action="/zakaz/search"></br>
+    <input type="text" class="search-input" name="name" placeholder="Введите логин">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+</body>
+</html>
